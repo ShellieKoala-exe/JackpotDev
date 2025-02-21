@@ -98,43 +98,6 @@ export const AntiBot = {
   }
 };
 
-// Anti-debugging protection
-export const AntiDebug = {
-  init() {
-    // Disable right-click
-    document.addEventListener('contextmenu', e => e.preventDefault());
-    
-    // Disable DevTools shortcuts
-    document.addEventListener('keydown', e => {
-      if (
-        (e.ctrlKey && e.shiftKey && e.key === 'I') ||
-        (e.ctrlKey && e.shiftKey && e.key === 'J') ||
-        (e.ctrlKey && e.key === 'U')
-      ) {
-        e.preventDefault();
-      }
-    });
-    
-    // Detect DevTools opening
-    let devtools = function() {};
-    devtools.toString = function() {
-      this.opened = true;
-      return '';
-    };
-    
-    console.log(devtools);
-    
-    setInterval(() => {
-      const widthThreshold = window.outerWidth - window.innerWidth > 160;
-      const heightThreshold = window.outerHeight - window.innerHeight > 160;
-      
-      if (widthThreshold || heightThreshold || devtools.opened) {
-        document.body.innerHTML = 'Developer Tools detected. Please refresh the page.';
-      }
-    }, 1000);
-  }
-};
-
 // Browser fingerprinting
 export const Fingerprint = {
   async generate() {
@@ -194,7 +157,6 @@ export const CSRFProtection = {
 // Initialize security features
 document.addEventListener('DOMContentLoaded', () => {
   CSP.init();
-  AntiDebug.init();
   CSRFProtection.init();
   
   // Add security headers checker
