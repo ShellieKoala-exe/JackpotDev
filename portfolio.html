@@ -9,125 +9,50 @@
   <link rel="stylesheet" href="css/portfolio.css">
   <script src="js/main.js" type="module" defer></script>
   <script src="js/portfolio.js" type="module" defer></script>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body class="dark-theme">
   <nav>
     <div class="logo">
-      <span>Jackpot</span>
+      <img src="/MAIN LOGO (1).png" alt="Jackpot" class="logo-image">
     </div>
     
     <div class="nav-links">
       <a href="/"><span>Home</span></a>
       <a href="/services.html"><span>Services</span></a>
-      <a href="/portfolio.html" class="active"><span>Our Work</span></a>
+      <a href="/portfolio.html" class="active"><span>Portfolio</span></a>
       <a href="/about.html"><span>About</span></a>
       <a href="/contact.html"><span>Contact</span></a>
+      <a href="/settings.html"><span>Options</span></a>
     </div>
   </nav>
 
   <main class="portfolio-page">
-    <div class="portfolio-hero">
-      <h1>Our Portfolio</h1>
-      <p>Explore our innovative solutions and successful projects</p>
+    <section class="portfolio-hero">
+      <h1>Our Work</h1>
+      <p>Explore our latest projects and success stories</p>
       
       <div class="portfolio-filters">
         <button class="filter-btn active" data-filter="all">All Projects</button>
-        <button class="filter-btn" data-filter="web">Web Apps</button>
         <button class="filter-btn" data-filter="mobile">Mobile Apps</button>
+        <button class="filter-btn" data-filter="web">Web Development</button>
+        <button class="filter-btn" data-filter="software">Custom Software</button>
       </div>
-    </div>
+    </section>
 
-    <div class="portfolio-grid">
-      <!-- Website Examples -->
-      <div class="portfolio-item" data-category="web">
-        <div class="project-card glow-effect">
-          <h3>E-Commerce Platform</h3>
-          <p>A modern e-commerce solution with advanced features including real-time inventory management, secure payments, and analytics dashboard.</p>
-          <a href="https://ecommerce-demo.jackpot.dev" class="btn primary">Click Me</a>
+    <section class="portfolio-grid">
+      <!-- Project cards will be dynamically loaded here -->
+    </section>
+
+    <div class="portfolio-showcase">
+      <div class="showcase-content">
+        <div class="showcase-close">×</div>
+        <div class="showcase-details">
+          <!-- Project details will be loaded here -->
         </div>
       </div>
-
-      <div class="portfolio-item" data-category="web">
-        <div class="project-card glow-effect">
-          <h3>Learning Management System</h3>
-          <p>Comprehensive online learning platform with video streaming, course management, and student progress tracking.</p>
-          <a href="https://lms-demo.jackpot.dev" class="btn primary">Click Me</a>
-        </div>
-      </div>
-
-      <div class="portfolio-item" data-category="web">
-        <div class="project-card glow-effect">
-          <h3>Real Estate Portal</h3>
-          <p>Property listing and management platform with virtual tours and automated scheduling system.</p>
-          <a href="https://realestate-demo.jackpot.dev" class="btn primary">Click Me</a>
-        </div>
-      </div>
-
-      <div class="portfolio-item" data-category="web">
-        <div class="project-card glow-effect">
-          <h3>Social Media Dashboard</h3>
-          <p>Comprehensive social media management platform with analytics, scheduling, and engagement tracking.</p>
-          <a href="https://social-demo.jackpot.dev" class="btn primary">Click Me</a>
-        </div>
-      </div>
-
-      <div class="portfolio-item" data-category="web">
-        <div class="project-card glow-effect">
-          <h3>Healthcare Management System</h3>
-          <p>Complete healthcare solution with patient records, appointment scheduling, and billing management.</p>
-          <a href="https://healthcare-demo.jackpot.dev" class="btn primary">Click Me</a>
-        </div>
-      </div>
-
-      <div class="portfolio-item" data-category="web">
-        <div class="project-card glow-effect">
-          <h3>Project Management Tool</h3>
-          <p>Collaborative project management platform with task tracking, team communication, and resource allocation.</p>
-          <a href="https://pm-demo.jackpot.dev" class="btn primary">Click Me</a>
-        </div>
-      </div>
-
-      <div class="portfolio-item" data-category="web">
-        <div class="project-card glow-effect">
-          <h3>Event Booking Platform</h3>
-          <p>Comprehensive event management system with ticket sales, venue management, and attendee tracking.</p>
-          <a href="https://events-demo.jackpot.dev" class="btn primary">Click Me</a>
-        </div>
-      </div>
-
-      <div class="portfolio-item" data-category="web">
-        <div class="project-card glow-effect">
-          <h3>Job Board Portal</h3>
-          <p>Advanced job listing platform with applicant tracking, resume parsing, and recruiter tools.</p>
-          <a href="https://jobs-demo.jackpot.dev" class="btn primary">Click Me</a>
-        </div>
-      </div>
-
-      <div class="portfolio-item" data-category="web">
-        <div class="project-card glow-effect">
-          <h3>Financial Analytics Dashboard</h3>
-          <p>Real-time financial tracking platform with advanced analytics, reporting, and forecasting tools.</p>
-          <a href="https://finance-demo.jackpot.dev" class="btn primary">Click Me</a>
-        </div>
-      </div>
-
-      <div class="portfolio-item" data-category="web">
-        <div class="project-card glow-effect">
-          <h3>Travel Booking System</h3>
-          <p>All-in-one travel platform with flight booking, hotel reservations, and itinerary management.</p>
-          <a href="https://travel-demo.jackpot.dev" class="btn primary">Click Me</a>
-        </div>
-      </div>
-    </div>
-
-    <div class="portfolio-navigation">
-      <button class="nav-btn prev">Previous</button>
-      <div class="page-indicator">
-        <span class="current-page">1</span> / <span class="total-pages">3</span>
-      </div>
-      <button class="nav-btn next">Next</button>
     </div>
   </main>
+
+  <!-- Footer -->
 </body>
 </html>
