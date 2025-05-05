@@ -1,62 +1,4 @@
-import { sanitizeInput, InputValidation, AntiBot, Fingerprint } from './security.js';
-
-// Modify form submissions
-document.querySelectorAll('form').forEach(form => {
-  // Add honeypot
-  const honeypot = AntiBot.createHoneypot();
-  form.appendChild(honeypot);
-  
-  form.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    
-    const formData = new FormData(form);
-    
-    // Check honeypot
-    if (!AntiBot.checkHoneypot(formData)) {
-      console.error('Bot detected');
-      return;
-    }
-    
-    // Rate limiting
-    const fingerprint = await Fingerprint.generate();
-    if (!InputValidation.checkRateLimit(fingerprint)) {
-      console.error('Rate limit exceeded');
-      return;
-    }
-    
-    // Sanitize inputs
-    for (const [name, value] of formData.entries()) {
-      formData.set(name, sanitizeInput(value));
-    }
-    
-    // Validate email if present
-    const email = formData.get('email');
-    if (email && !InputValidation.validateEmail(email)) {
-      console.error('Invalid email');
-      return;
-    }
-    
-    // Add fingerprint to request
-    formData.append('fingerprint', fingerprint);
-    
-    // Submit form
-    try {
-      const response = await fetch(form.action, {
-        method: form.method,
-        body: formData,
-        headers: {
-          'X-CSRF-Token': document.querySelector('meta[name="csrf-token"]').content
-        }
-      });
-      
-      if (!response.ok) throw new Error('Form submission failed');
-      
-      // Handle success
-    } catch (error) {
-      console.error('Form submission error:', error);
-    }
-  });
-});
+import { sanitizeInput } from './security.js';
 
 // Theme Management
 const themeManager = {
@@ -147,6 +89,63 @@ document.addEventListener('DOMContentLoaded', () => {
       preview.style.setProperty('--y', `${y}%`);
     });
   });
+});
+
+// Intersection Observer for smooth section loading
+document.addEventListener('DOMContentLoaded', () => {
+  // Handle logo loading
+  const logos = document.querySelectorAll('.logo-image');
+  logos.forEach(logo => {
+    logo.onload = () => logo.classList.add('loaded');
+    if (logo.complete) logo.classList.add('loaded');
+  });
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, {
+    threshold: 0.1,
+    rootMargin: '50px'
+  });
+
+  // Apply fade-in effect to sections
+  document.querySelectorAll('section').forEach(section => {
+    section.classList.add('fade-in');
+    observer.observe(section);
+  });
+
+  // Preload critical images
+  const preloadImages = ['/MAIN LOGO (1).png'];
+  preloadImages.forEach(src => {
+    const img = new Image();
+    img.src = src;
+  });
+
+  // Smooth scroll handling
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', (e) => {
+      e.preventDefault();
+      const target = document.querySelector(anchor.getAttribute('href'));
+      if (target) {
+        target.scrollIntoView({
+          behavior: 'smooth',
+          block: 'start'
+        });
+      }
+    });
+  });
+
+  // Performance optimizations
+  if ('loading' in HTMLImageElement.prototype) {
+    const images = document.querySelectorAll('img[loading="lazy"]');
+    images.forEach(img => {
+      img.loading = 'lazy';
+    });
+  }
 });
 
 // Smooth scroll with custom easing
@@ -356,21 +355,6 @@ class EnhancedParticleSystem extends ParticleSystem {
   }
 }
 
-// Modal Management
-const modalManager = {
-  init() {
-    const viewWorkBtn = document.querySelector('.view-work-btn');
-    if (viewWorkBtn) {
-      viewWorkBtn.addEventListener('click', () => {
-        document.body.style.opacity = '0';
-        setTimeout(() => {
-          window.location.href = '/portfolio.html';
-        }, 300);
-      });
-    }
-  }
-};
-
 // Button click animation
 document.addEventListener('DOMContentLoaded', () => {
   document.querySelectorAll('.btn.primary').forEach(btn => {
@@ -423,39 +407,11 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 
+// Initialize everything
 document.addEventListener('DOMContentLoaded', () => {
   themeManager.init();
   navigation.init();
   animations.init();
   new CustomCursor();
   new EnhancedParticleSystem();
-  modalManager.init();
-
-  // Add scroll to bottom functionality
-  const scrollIndicator = document.querySelector('.scroll-indicator');
-  if (scrollIndicator) {
-    scrollIndicator.addEventListener('click', () => {
-      window.scrollTo({
-        top: document.body.scrollHeight,
-        behavior: 'smooth'
-      });
-    });
-  }
-
-  // Add parallax effect to hero section
-  const hero = document.querySelector('.hero');
-  if (hero) {
-    window.addEventListener('mousemove', (e) => {
-      const mouseX = e.clientX / window.innerWidth;
-      const mouseY = e.clientY / window.innerHeight;
-      
-      const shapes = document.querySelectorAll('.shape');
-      shapes.forEach((shape, index) => {
-        const speed = 1 + index * 0.1;
-        const x = (mouseX * 20 * speed);
-        const y = (mouseY * 20 * speed);
-        shape.style.transform = `translate(${x}px, ${y}px)`;
-      });
-    });
-  }
 });
