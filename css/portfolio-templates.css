@@ -1,12 +1,10 @@
 /* Base Portfolio Styles */
 .portfolio-item {
-  font-family: 'Inter', sans-serif;
   margin-bottom: var(--spacing-xl);
   opacity: 0;
   transform: translateY(20px);
   animation: fadeInUp 0.6s ease forwards;
   position: relative;
-  animation: float 6s ease-in-out infinite;
 }
 
 .portfolio-item::after {
@@ -29,27 +27,11 @@
   opacity: 1;
 }
 
-.portfolio-item h3 {
-  color: var(--primary);
-  text-shadow: 0 0 10px rgba(var(--primary-rgb), 0.5);
-  margin-bottom: var(--spacing-md);
-}
-
-.portfolio-item p {
-  color: var(--text);
-  text-shadow: 0 0 8px rgba(255, 255, 255, 0.3);
-}
-
 @keyframes fadeInUp {
   to {
     opacity: 1;
     transform: translateY(0);
   }
-}
-
-@keyframes float {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-10px); }
 }
 
 /* Template 1 Styles */
@@ -59,12 +41,6 @@
   overflow: hidden;
   aspect-ratio: 16/9;
   background: var(--surface);
-  transform: perspective(1000px) rotateY(0);
-  transition: transform 0.6s ease;
-}
-
-.template-1:hover .project-preview {
-  transform: perspective(1000px) rotateY(10deg);
 }
 
 .template-1 .project-preview::before {
@@ -121,12 +97,11 @@
   background: var(--surface);
   border-radius: var(--radius-lg);
   padding: var(--spacing-lg);
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: transform 0.3s ease;
 }
 
-.template-2:hover .project-card {
-  transform: translateY(-10px) scale(1.02);
-  box-shadow: 0 20px 40px rgba(var(--primary-rgb), 0.3);
+.template-2 .project-card:hover {
+  transform: translateY(-5px);
 }
 
 .template-2 .project-header {
@@ -332,336 +307,4 @@
 .template-4 .project-links a:hover {
   transform: translateY(-2px);
   box-shadow: 0 4px 12px rgba(var(--primary-rgb), 0.3);
-}
-
-/* Template 5 Styles - Floating Sphere */
-.template-5 .floating-project {
-  position: relative;
-  padding: var(--spacing-xl);
-  background: linear-gradient(135deg, #1a237e, #311b92);
-  border-radius: var(--radius-lg);
-  overflow: hidden;
-}
-
-.template-5 .project-sphere {
-  position: relative;
-  width: 300px;
-  height: 300px;
-  margin: 0 auto;
-  perspective: 1000px;
-}
-
-.template-5 .sphere-content {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  transform-style: preserve-3d;
-  animation: rotateSphere 20s linear infinite;
-}
-
-.template-5 .tech-orbit {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  transform-style: preserve-3d;
-}
-
-.template-5 .tech-badge {
-  position: absolute;
-  padding: var(--spacing-sm) var(--spacing-md);
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: var(--radius-full);
-  backdrop-filter: blur(5px);
-  animation: orbitFloat 10s linear infinite;
-}
-
-@keyframes rotateSphere {
-  to {
-    transform: rotateY(360deg);
-  }
-}
-
-@keyframes orbitFloat {
-  to {
-    transform: rotateY(360deg) translateZ(150px);
-  }
-}
-
-/* Template 6 Styles - Morphing Card */
-.template-6 .morphing-card {
-  position: relative;
-  height: 400px;
-  transform-style: preserve-3d;
-  transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.template-6 .card-face {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  backface-visibility: hidden;
-  padding: var(--spacing-lg);
-  background: linear-gradient(135deg, #00897b, #006064);
-  border-radius: var(--radius-lg);
-}
-
-.template-6 .back {
-  transform: rotateY(180deg);
-}
-
-.template-6 .preview-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: var(--spacing-sm);
-  margin-top: var(--spacing-lg);
-}
-
-.template-6 .tech-flow {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--spacing-sm);
-  animation: flowTech 15s linear infinite;
-}
-
-@keyframes flowTech {
-  to {
-    transform: translateX(-100%);
-  }
-}
-
-/* Template 7 Styles - Timeline Project */
-.template-7 .timeline-project {
-  background: linear-gradient(135deg, #4a148c, #7b1fa2);
-  padding: var(--spacing-xl);
-  border-radius: var(--radius-lg);
-}
-
-.template-7 .milestone-track {
-  position: relative;
-  padding-left: 50px;
-}
-
-.template-7 .milestone {
-  position: relative;
-  margin-bottom: var(--spacing-lg);
-  opacity: 0;
-  transform: translateX(-20px);
-  transition: all 0.5s ease;
-}
-
-.template-7 .milestone::before {
-  content: '';
-  position: absolute;
-  left: -50px;
-  top: 0;
-  width: 20px;
-  height: 20px;
-  background: var(--primary);
-  border-radius: 50%;
-  box-shadow: 0 0 20px var(--primary);
-}
-
-.template-7 .milestone.visible {
-  opacity: 1;
-  transform: translateX(0);
-}
-
-/* Template 8 Styles - Perspective Layers */
-.template-8 .perspective-card {
-  position: relative;
-  height: 500px;
-  perspective: 1000px;
-}
-
-.template-8 .card-layers {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  transform-style: preserve-3d;
-  transition: transform 0.8s ease;
-}
-
-.template-8 .layer {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  backface-visibility: hidden;
-  background: linear-gradient(135deg, #1565c0, #0d47a1);
-  border-radius: var(--radius-lg);
-  padding: var(--spacing-lg);
-  transform: translateZ(var(--layer-depth));
-}
-
-.template-8 .layer.design { --layer-depth: 100px; }
-.template-8 .layer.development { --layer-depth: 0px; }
-.template-8 .layer.deployment { --layer-depth: -100px; }
-
-/* Template 9 Styles - Interactive Device */
-.template-9 .interactive-showcase {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: var(--spacing-xl);
-  padding: var(--spacing-xl);
-  background: linear-gradient(135deg, #2e7d32, #1b5e20);
-  border-radius: var(--radius-lg);
-}
-
-.template-9 .device-frame {
-  position: relative;
-  aspect-ratio: 9/16;
-  background: #000;
-  border-radius: 24px;
-  padding: 12px;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-}
-
-.template-9 .device-screen {
-  width: 100%;
-  height: 100%;
-  background: var(--surface);
-  border-radius: 16px;
-  overflow: hidden;
-}
-
-.template-9 .feature {
-  padding: var(--spacing-md);
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: var(--radius-lg);
-  backdrop-filter: blur(10px);
-  margin-bottom: var(--spacing-md);
-  transform: translateX(-20px);
-  opacity: 0;
-  transition: all 0.5s ease;
-}
-
-.template-9 .feature.visible {
-  transform: translateX(0);
-  opacity: 1;
-}
-
-/* Shared Animation Classes */
-.hover-float {
-  transition: transform 0.3s ease;
-}
-
-.hover-float:hover {
-  transform: translateY(-10px);
-}
-
-.fade-in {
-  animation: fadeIn 0.5s ease forwards;
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* Interactive Elements */
-.interactive-element {
-  position: relative;
-  overflow: hidden;
-}
-
-.interactive-element::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
-  transform: translateX(-100%);
-  transition: transform 0.6s ease;
-}
-
-.interactive-element:hover::after {
-  transform: translateX(100%);
-}
-
-/* Loading Animation */
-.portfolio-loading {
-  position: fixed;
-  inset: 0;
-  background: var(--background);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 9999;
-  opacity: 1;
-  transition: opacity 0.5s ease;
-}
-
-.portfolio-loading.fade-out {
-  opacity: 0;
-  pointer-events: none;
-}
-
-.portfolio-loader {
-  width: 60px;
-  height: 60px;
-  border: 4px solid var(--primary);
-  border-radius: 50%;
-  border-top-color: transparent;
-  animation: spin 1s linear infinite;
-}
-
-@keyframes spin {
-  to { transform: rotate(360deg); }
-}
-
-/* Color Theme Variations */
-.theme-emerald {
-  --primary: #00bfa5;
-  --primary-light: #1de9b6;
-  --primary-dark: #00796b;
-}
-
-.theme-sunset {
-  --primary: #ff6f00;
-  --primary-light: #ffd149;
-  --primary-dark: #c43e00;
-}
-
-.theme-cosmic {
-  --primary: #6200ea;
-  --primary-light: #9d46ff;
-  --primary-dark: #0a00b6;
-}
-
-.theme-ocean {
-  --primary: #0288d1;
-  --primary-light: #5eb8ff;
-  --primary-dark: #005b9f;
-}
-
-.theme-aurora {
-  --primary: #00c853;
-  --primary-light: #5efc82;
-  --primary-dark: #009624;
-}
-
-/* Starfield Effect */
-.portfolio-stars {
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  z-index: 0;
-}
-
-.star {
-  position: absolute;
-  width: 2px;
-  height: 2px;
-  background: white;
-  border-radius: 50%;
-  animation: twinkle 1.5s ease-in-out infinite;
-}
-
-@keyframes twinkle {
-  0%, 100% { opacity: 0.2; }
-  50% { opacity: 1; }
 }
